@@ -33,6 +33,7 @@ public class SLList {
         String res = "";
         while(head != null){
             res += head.data + "\n";
+            head = head.next;
         }
         return res;
     }
