@@ -23,9 +23,14 @@ public class AList {
     }
 
     public void listRemove(int pos){
+        //make sure index is in bounds
+        if(pos < 0 || pos >= arr.length){
+            return;
+        }
         for(int i = pos; i < arr.length - 1; i++){
             arr[i] = arr[i + 1];
             size --;
+
         }
     }
 
