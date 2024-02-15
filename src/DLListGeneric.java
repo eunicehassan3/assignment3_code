@@ -1,14 +1,14 @@
-public class DLList {
+public class DLListGeneric<T> {
     DLNode head;
     DLNode tail;
     int size;
 
-    DLList(){
+    DLListGeneric(){
         head = null;
         tail = null;
     }
 
-    public void listAdd(Book p){
+    public void listAdd(T p){
         DLNode newNode = new DLNode(p);
         if(tail != null){
             tail.next = newNode;
@@ -22,34 +22,28 @@ public class DLList {
     }
 
     public void listRemove(int pos){
-        DLNode current = head;
+        DLNode current;
+
         if(head == null){
             return;
         }
-        // || pos >= size
-
-        for(int i = 0; current != null && i < pos; i++){
-            current = current.next;
-        }
-        //pos > size;
-        if(current == null){
+        if(pos == 0){
+            head = head.next;
+            if(head != null){
+                head.prev = null; //"delete" the beginning node
+            }
             return;
         }
 
-        //if there is only one node in the list
-        if(current == head && current == tail){
-            head = null;
-            tail = null;
+        current = head;
+        for(int i = 0; current != null && i < pos; i++){
+            current = current.next;
         }
-        //
-        if (current == head) {
-            head = current.next;
-            head.prev = null;
-        } else if (current == tail) {
-            tail = current.prev;
-            tail.next = null;
-        } else {
-            current.prev.next = current.next;
+        if(current == null) return; //position out of bounds
+        if(current.prev != null){
+            current.prev.next = current.next; //update pointers to remove the current node
+        }
+        if(current.next != null){
             current.next.prev = current.prev;
         }
     }
@@ -64,4 +58,3 @@ public class DLList {
         return res;
     }
 }
-

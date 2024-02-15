@@ -1,10 +1,10 @@
-public class AList {
+public class AListGeneric<T> {
     private int size= 0;
     private int maxSize = 0;
-    private Book[] arr = new Book[maxSize];
-    AList(){}
+    private T[] arr = (T[]) new Object [maxSize];
+    AListGeneric(){}
 
-    public void listAdd(Book p){
+    public void listAdd(T p){
         if(size < maxSize){
             arr[size] = p; //add value
             size++; // increase size
@@ -12,7 +12,7 @@ public class AList {
         else{
             maxSize += 1;
             maxSize *= 2;
-            Book[] temp = new Book[maxSize]; //make a new array with bigger length
+            T[] temp = (T[]) new Object [maxSize]; //make a new array with bigger length
             for(int i = 0; i < arr.length; i++){ //copy everything into new array
                 temp[i] = arr[i];
             }

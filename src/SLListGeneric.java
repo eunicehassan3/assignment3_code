@@ -1,10 +1,10 @@
-public class SLList {
+public class SLListGeneric<T> {
     SLNode head = null;
     int size = 0;
 
-    SLList(){}
+    SLListGeneric(){}
 
-    public void listAdd(Book p) {
+    public void listAdd(T p) {
         SLNode newNode = new SLNode(p);
         SLNode last = head;
         if (head == null) {
@@ -45,6 +45,4 @@ public class SLList {
         }
         return res;
     }
-        
 }
-
