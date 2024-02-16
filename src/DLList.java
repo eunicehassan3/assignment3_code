@@ -1,57 +1,48 @@
 public class DLList {
     DLNode head;
-    DLNode tail;
     int size;
 
     DLList(){
         head = null;
-        tail = null;
     }
 
-    public void listAdd(Book p){
+    public void listAdd(Book p) {
         DLNode newNode = new DLNode(p);
-        if(tail != null){
-            tail.next = newNode;
-        }
-        tail = newNode;
-        if(head == null){
+
+        if (head == null) {
             head = newNode;
+        } else {
+            DLNode temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.prev = temp;
         }
         size++;
-
     }
 
     public void listRemove(int pos){
-        DLNode current = head;
-        if(head == null){
-            return;
-        }
-        // || pos >= size
-
-        for(int i = 0; current != null && i < pos; i++){
-            current = current.next;
-        }
-        //pos > size;
-        if(current == null){
+        if (pos < 0 || pos >= size) { //if pos is out of bounds
             return;
         }
 
-        //if there is only one node in the list
-        if(current == head && current == tail){
+        if (size == 1) {  //if there is only one node in the list
             head = null;
-            tail = null;
-        }
-        //
-        if (current == head) {
-            head = current.next;
+        } else if (pos == 0) {
+            head = head.next;
             head.prev = null;
-        } else if (current == tail) {
-            tail = current.prev;
-            tail.next = null;
-        } else {
+       } else {
+            DLNode current = head;
+            for (int i = 0; i < pos; i++) {
+                current = current.next;
+            }
             current.prev.next = current.next;
-            current.next.prev = current.prev;
+            if (current.next != null) {
+                current.next.prev = current.prev;
+            }
         }
+        size--;
     }
 
     public String toString(){

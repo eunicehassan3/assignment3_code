@@ -19,7 +19,7 @@ public class Main {
         bookArray.listAdd(book3);
         bookArray.listAdd(book2);
         System.out.println(bookArray.toString());
-        bookArray.listRemove(5);
+        bookArray.listRemove(1);
         System.out.println(bookArray.toString());
 
         System.out.println(bookList.toString());
@@ -27,16 +27,16 @@ public class Main {
         bookList.listAdd(book2);
         bookList.listAdd(book1);
         System.out.println(bookList.toString());
-        bookList.listRemove(1);
+        bookList.listRemove(0);
         System.out.println(bookList.toString());
 
-//        System.out.println(dBookList.toString());
-//        dBookList.listAdd(book3);
-//        dBookList.listAdd(book2);
-//        dBookList.listAdd(book1);
-//        System.out.println(dBookList.toString());
-//        dBookList.listRemove(1);
-//        System.out.println(dBookList.toString());
+        System.out.println(dBookList.toString());
+        dBookList.listAdd(book3);
+        dBookList.listAdd(book2);
+        dBookList.listAdd(book1);
+        System.out.println(dBookList.toString());
+        dBookList.listRemove(2);
+        System.out.println(dBookList.toString());
 
         System.out.println(genericArray.toString());
         genericArray.listAdd(name2);
@@ -51,7 +51,7 @@ public class Main {
         genericSLList.listAdd(name3);
         genericSLList.listAdd(name1);
         System.out.println(genericSLList.toString());
-        genericSLList.listRemove(2);
+        genericSLList.listRemove(1);
         System.out.println(genericSLList.toString());
 
         System.out.println(genericDLList.toString());

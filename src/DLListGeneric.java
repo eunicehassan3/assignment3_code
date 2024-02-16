@@ -1,51 +1,48 @@
 public class DLListGeneric<T> {
     DLNode head;
-    DLNode tail;
     int size;
 
     DLListGeneric(){
         head = null;
-        tail = null;
     }
 
-    public void listAdd(T p){
-        DLNode newNode = new DLNode(p);
-        if(tail != null){
-            tail.next = newNode;
-        }
-        tail = newNode;
-        if(head == null){
+    public void listAdd(T d) {
+        DLNode newNode = new DLNode(d);
+
+        if (head == null) {
             head = newNode;
+        } else {
+            DLNode temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.prev = temp;
         }
         size++;
-
     }
 
     public void listRemove(int pos){
-        DLNode current;
-
-        if(head == null){
+        if (pos < 0 || pos >= size) { //if pos is out of bounds
             return;
         }
-        if(pos == 0){
+
+        if (size == 1) {  //if there is only one node in the list
+            head = null;
+        } else if (pos == 0) {
             head = head.next;
-            if(head != null){
-                head.prev = null; //"delete" the beginning node
+            head.prev = null;
+        } else {
+            DLNode current = head;
+            for (int i = 0; i < pos; i++) {
+                current = current.next;
             }
-            return;
+            current.prev.next = current.next;
+            if (current.next != null) {
+                current.next.prev = current.prev;
+            }
         }
-
-        current = head;
-        for(int i = 0; current != null && i < pos; i++){
-            current = current.next;
-        }
-        if(current == null) return; //position out of bounds
-        if(current.prev != null){
-            current.prev.next = current.next; //update pointers to remove the current node
-        }
-        if(current.next != null){
-            current.next.prev = current.prev;
-        }
+        size--;
     }
 
     public String toString(){
